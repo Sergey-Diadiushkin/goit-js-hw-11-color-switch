@@ -11,6 +11,10 @@ const startBtnRef = document.querySelector('[ data-action="start"]');
 const stopBtnRef = document.querySelector('[ data-action="stop"]');
 const bodyRef = document.querySelector("body");
 
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 const startRandomColor = {
   intervalId: null,
   isActive: false,
@@ -20,7 +24,8 @@ const startRandomColor = {
     }
     this.isActive = true;
     this.intervalId = setInterval(() => {
-      const randomColor = colors[[Math.floor(Math.random() * colors.length)]];
+      const randomColor =
+        colors[randomIntegerFromInterval(0, colors.length - 1)];
       bodyRef.style.backgroundColor = randomColor;
     }, 1000);
   },
